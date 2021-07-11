@@ -35,39 +35,41 @@
            </ul>
          </div>
          <div class="timeline">
-           <div class="fixed-title"<p> newest posts</p> </div>
-           <div class="post">
-             <div class="post-header">
-               <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a><p>username <span>timestamp</span></p></div>
-             <h2>This is a sample post title</h2>
-            <div class="post-text" id="post-text"> <p>this is the sample post content text</p>
-             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae tortor ac lorem efficitur imperdiet. Nulla tempus leo eu risus tempor malesuada. Phasellus a felis eget neque sagittis euismod nec ut velit. Sed odio mi, accumsan sit amet mauris at, pellentesque facilisis mi.</p>
-              </div>
-             <button onclick="showComments()">🖹 comments <small>▼</small></button>
-           <button> ❤ LIKES</button>
-             <!-- this for comments, will be hidden until clicked -->
-             <div class="comments animation" id="comments">
-             <div class="comment">
-               <div class="post-header">
-               <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a><p>username <span>timestamp</span></p></div>
-               <div class="comment-text">
-                 <p>Sure bro, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae tortor ac lorem efficitur imperdiet. </p>
-               </div>
-             <div class="comment">
-               <div class="post-header">
-               <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a><p>username <span>timestamp</span></p></div>
-               <div class="comment-text">
-                 <p>Sure bro, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae tortor ac lorem efficitur imperdiet. </p></div>
-             </div>
-               <div class="commenting">
-                 <form>
-     <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a>
-                  <textarea  id="commenting" class="write-comment" ></textarea>
-                   <input type="submit"  value="comment">
-                 </form>
-               </div>
-             </div>
-               </div>
+           <div class="fixed-title">
+             <p> newest posts</p> 
+            </div>
+              <div class="post">
+                <div class="post-header">
+                  <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a><p>username <span>timestamp</span></p></div>
+                <h2>This is a sample post title</h2>
+                <div class="post-text" id="post-text"> <p>this is the sample post content text</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae tortor ac lorem efficitur imperdiet. Nulla tempus leo eu risus tempor malesuada. Phasellus a felis eget neque sagittis euismod nec ut velit. Sed odio mi, accumsan sit amet mauris at, pellentesque facilisis mi.</p>
+                  </div>
+                <button onclick="showComments()">🖹 comments <small>▼</small></button>
+                <button> ❤ LIKES</button>
+                <!-- this for comments, will be hidden until clicked -->
+                <div class="comments animation" id="comments">
+                <div class="comment">
+                  <div class="post-header">
+                  <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a><p>username <span>timestamp</span></p></div>
+                  <div class="comment-text">
+                    <p>Sure bro, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae tortor ac lorem efficitur imperdiet. </p>
+                  </div>
+                <div class="comment">
+                  <div class="post-header">
+                  <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a><p>username <span>timestamp</span></p></div>
+                  <div class="comment-text">
+                    <p>Sure bro, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae tortor ac lorem efficitur imperdiet. </p></div>
+                </div>
+                  <div class="commenting">
+                    <form>
+                      <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a>
+                      <textarea  id="commenting" class="write-comment" ></textarea>
+                      <input type="submit"  value="comment">
+                    </form>
+                  </div>
+                </div>
+            </div>
            </div>
            <div class="post">
              <p>this is a post</p>
@@ -100,6 +102,7 @@
      </footer>
      </div>
 
+<script src="src/script.js"></script>
      <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
 
@@ -110,12 +113,12 @@
 <script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyBCJ9X0ojCqhRm_3zKWyvRGPSdvorfjPtI",
-    authDomain: "assignment-firebase-project.firebaseapp.com",
-    projectId: "assignment-firebase-project",
-    storageBucket: "assignment-firebase-project.appspot.com",
-    messagingSenderId: "94758907514",
-    appId: "1:94758907514:web:0b634e37dc4d2f5fb7d5c3"
+    apiKey: "AIzaSyA9zC3XgT2jdGNlxi54JJTNiQG1pA8AltA",
+    authDomain: "blog-assignment-470d2.firebaseapp.com",
+    projectId: "blog-assignment-470d2",
+    storageBucket: "blog-assignment-470d2.appspot.com",
+    messagingSenderId: "560015065087",
+    appId: "1:560015065087:web:ff45e2e463589268fff1ca"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
