@@ -1,3 +1,9 @@
+// TO DO:
+  //  integrate auth
+  //  use current user as author
+  //  
+
+
 document.addEventListener("DOMContentLoaded", function(){
   const db = firebase.firestore();
 
@@ -24,20 +30,14 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   function getAllBlogs(){
-    // const arrBlogs = []
     db.collection("blogs").get().then((querySnapshot) =>{
       querySnapshot.forEach((doc) => {
         console.log(`${doc.id} => ${doc.data()}`);       
-        // arrBlogs.push(JSON.stringify(doc.data()));
         displayBlog(doc.id, JSON.stringify(doc.data()))
-      // let comm = getComments(doc.id)
-
-      // console.log(comm);
+     
       })
     })
-    // console.log(`Current blogs: `)
-    // console.log(arrBlogs)
-    // displayBlog(arrBlogs)
+
   }
   
   function getBlog(blogID){
@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function(){
       if (doc.exists) {
           console.log(`Document data: ${JSON.stringify(doc.data())}`);
       } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
       }
     })
@@ -59,14 +58,11 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log(blogParsed)
     let commentsString = '';
 
-    // let comments = getComments(id);
     db.collection("blogs").doc(id).collection("comments")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach(doc => {
-          // console.log(doc.id, " => ", JSON.parse(JSON.stringify(doc.data())));
           let parsedComment = JSON.parse(JSON.stringify(doc.data()));
-          // let commentDate = parsedComment.timestamp.seconds;
           let commentDate = new Date(parsedComment.timestamp.seconds);
           commentsString += 
           `
@@ -77,8 +73,7 @@ document.addEventListener("DOMContentLoaded", function(){
             <p>${parsedComment.text}</p>
           </div>
           `
-          // arrComments.push(parsed);
-          // console.log(`Comments: `);
+
       })
     }).then(() => {
       let blogDate = new Date(blogParsed.timestamp.seconds);
@@ -96,25 +91,22 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="comments animation" id="comments">
         ${commentsString}
           <div class="commenting">
-            <form>
+            <form method="post" id="comment-form">
               <a style="align-self:center"><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" height="20px"></a>
               <textarea  id="commenting" class="write-comment" ></textarea>
-              <input type="submit"  value="comment">
+              <input type="submit"  value="comment" id="submit-comment" data-blog-id="${id}">
             </form>
           </div>
         </div> `
         // console.log(blogContent)
     //     console.log(`Comments: ${comments}`);
         timelineSelector.innerHTML += blogContent;
-    }
-
-    )
-    
+    })
   }
 
-  function addComment(blogid, text){
+  function addComment(blogid, text, author){
     db.collection("blogs").doc(blogid).collection("comments").add({
-      author: sampleAuthor,
+      author: author,
       text: text,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     }).then( (docRef) => {
@@ -127,13 +119,10 @@ document.addEventListener("DOMContentLoaded", function(){
   function getComments(blogID){
     console.log(`Getting comments for ${blogID}`)
     let commentsString = '';
-    // let blogSelector = document.querySelector(".post");
-    // console.log(blogSelector.data.blogID)
     db.collection("blogs").doc(blogID).collection("comments")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach(doc => {
-          // console.log(doc.id, " => ", JSON.parse(JSON.stringify(doc.data())));
           let parsed = JSON.parse(JSON.stringify(doc.data()));
           commentsString += 
           `
@@ -144,21 +133,21 @@ document.addEventListener("DOMContentLoaded", function(){
             <p>${parsed.text}</p>
           </div>
           `
-          // arrComments.push(parsed);
-          // console.log(`Comments: `);
       })
     })
     console.log(commentsString);
     return commentsString
   }
-  // addBlog(sampleTitle, sampleDesc);
-  // addComment(sampleBlogID, sampleComment);
   getAllBlogs();
-  // getBlog(sampleBlogID);
-  // getComments(sampleBlogID);
 
-  document.addEventListener("click", () => {
-
+  // Listener for comments form
+  document.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if(e.target.id == "comment-form"){
+      console.log("Comment form.")
+      console.log(e.target.elements)
+      // addComment(blogid, text, author)
+    }
   })
 
   function showComments() {
